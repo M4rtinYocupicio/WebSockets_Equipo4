@@ -1,30 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cliente Web Socket</title>
-    <!-- Add Bootstrap CSS-->
+    <title>Mensajero WebSocket</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <!-- Add StompJs for WebSocket in SpringBoot-->
+
+    <!-- STOMP -->
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.js"></script>
-    <!-- Add script for JS file -->
+
+    <!-- JS -->
     <script src="index.js"></script>
 </head>
 <body>
-    <!-- Add div container for other elements -->
-    <div class="container">
-        <!-- Add div that contains messages -->
-        <div id="mensajes" class="container">
-            <ul id="ULMensajes" class="list-group"></ul>
+
+<div class="container mt-4">
+
+    <h2 class="text-center">Mensajero WebSocket</h2>
+
+    <!-- Conexión -->
+    <div class="card p-3 mb-3">
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input id="txtNombre" type="text" class="form-control" placeholder="Tu nombre">
         </div>
-        <!-- Add another container for the elements to send messages -->
-        <div class="container">
-            <input id="txtNombre" type="text" class="form-control" placeholder="Nombre">
-            <input id="txtMensaje" type="text" class="form-control" placeholder="Mensaje">
-            <button id="btnEnviar" class="btn btn-primary">Enviar</button>
-        </div>
+        <button id="btnConectar" class="btn btn-success">Conectar</button>
     </div>
+
+    <!-- Selección de usuario -->
+    <div class="card p-3 mb-3">
+        <label>Enviar a:</label>
+        <select id="selectUsuarios" class="form-control">
+            <option value="todos">Todos</option>
+        </select>
+    </div>
+
+    <!-- Mensajes -->
+    <div class="card p-3 mb-3">
+        <h5>Mensajes</h5>
+
+        <ul id="ULMensajes" class="list-group mb-3"></ul>
+
+        <input id="txtMensaje" type="text" class="form-control mb-2" placeholder="Escribe un mensaje">
+        <button id="btnEnviar" class="btn btn-primary">Enviar Mensaje</button>
+    </div>
+
+    <!-- Enviar producto -->
+    <div class="card p-3 mb-3">
+        <h5>Enviar Producto</h5>
+
+        <input id="txtProductoNombre" type="text" class="form-control mb-2" placeholder="Nombre del producto">
+        <input id="txtProductoPrecio" type="number" class="form-control mb-2" placeholder="Precio">
+
+        <button id="btnEnviarProducto" class="btn btn-warning">Enviar Producto</button>
+    </div>
+
+    <!-- Tabla de productos -->
+    <div class="card p-3">
+        <h5>Productos recibidos</h5>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+            </tr>
+            </thead>
+            <tbody id="tablaProductos"></tbody>
+        </table>
+    </div>
+
+</div>
+
 </body>
 </html>
