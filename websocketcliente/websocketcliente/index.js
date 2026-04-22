@@ -3,8 +3,18 @@ let stompCliente = null;
 
 // function to suscribe to the broker
 const onConnectSocket = () => {
-    stompCliente.subscribe('/tema/mensajes', (mensaje) => {
+    stompCliente.publish({
+        destination: '/app/registro',
+        body: document.getElementById('txtNombre').value
+    });
+    stompCliente.subscribe('/tema/usuarios', (usuarios) => {
+        mostrarUsuarios(JSON.parse(usuarios.body));
+    });
+    stompCliente.subscribe('/user/cola/mensajes', (mensaje) => {
         mostrarMensaje(mensaje.body);
+    });
+    stompCliente.subscribe('/tema/productos', (producto) => {
+        agregarProductoTabla(JSON.parse(producto.body));
     });
 };
 
