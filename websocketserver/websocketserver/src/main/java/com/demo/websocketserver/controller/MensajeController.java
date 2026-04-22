@@ -13,14 +13,14 @@ public class MensajeController {
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
-    // 📢 Mensaje a todos
+    // Mensaje a todos
     @MessageMapping("/envio")
     @SendTo("/tema/mensajes")
     public Mensaje enviar(Mensaje mensaje) {
         return mensaje;
     }
 
-    // 🎯 Mensaje privado
+    // Mensaje privado
     @MessageMapping("/privado")
     public void mensajePrivado(Mensaje mensaje) {
         messagingTemplate.convertAndSendToUser(
@@ -30,14 +30,14 @@ public class MensajeController {
         );
     }
 
-    // 📦 Producto a todos
+    // Producto a todos
     @MessageMapping("/producto")
     @SendTo("/tema/productos")
     public Producto enviarProducto(Producto producto) {
         return producto;
     }
 
-    // 📦 Producto privado
+    // Producto privado
     @MessageMapping("/productoPrivado")
     public void productoPrivado(@Payload Producto producto,
                                 @Header("destino") String destino) {
